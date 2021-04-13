@@ -1,6 +1,6 @@
-// ***************************************************************************
-// Iteration 1 - `for...of` loop
-// ***************************************************************************
+// // ***************************************************************************
+// // Iteration 1 - `for...of` loop
+// // ***************************************************************************
 let usersArray = require('./data.js')
 const getFirstNames = arr => {
   const userFirstNames = [];
@@ -12,12 +12,12 @@ const getFirstNames = arr => {
 };
 
 getFirstNames(usersArray);
-// expected output:
-// [ 'Kirby', 'Tracie', 'Kendra', 'Kinney', 'Howard', 'Rachelle', 'Lizzie' ]
+// // expected output:
+// // [ 'Kirby', 'Tracie', 'Kendra', 'Kinney', 'Howard', 'Rachelle', 'Lizzie' ]
 
-// ***************************************************************************
-// Iteration 2 - `for...of` loop and ES6 string literals `${}`
-// ***************************************************************************
+// // ***************************************************************************
+// // Iteration 2 - `for...of` loop and ES6 string literals `${}`
+// // ***************************************************************************
 
 const getFullNames = arr => {
   let results = []
@@ -29,13 +29,13 @@ const getFullNames = arr => {
 };
 console.log(getFullNames(usersArray));
 
-// expected output:
-// [ 'Kirby Doyle', 'Tracie May', 'Kendra Hines', 'Kinney Howard',
-//   'Howard Gilmore', 'Rachelle Schneider', 'Lizzie Alford' ]
+// // expected output:
+// // [ 'Kirby Doyle', 'Tracie May', 'Kendra Hines', 'Kinney Howard',
+// //   'Howard Gilmore', 'Rachelle Schneider', 'Lizzie Alford' ]
 
-// ***************************************************************************
-// Iteration 3 - ES6 destructuring , for of loop, object literal
-// ***************************************************************************
+// // ***************************************************************************
+// // Iteration 3 - ES6 destructuring , for of loop, object literal
+// // ***************************************************************************
 
 const getUsersCreditDetails = arr => {
   let fullName = []
@@ -48,19 +48,19 @@ const getUsersCreditDetails = arr => {
 
 };
 
-console.log(getUsersCreditDetails(usersArray));
-// expected output:
-// [ { firstName: 'Kirby', lastName: 'Doyle', balance: '$3,570.06' },
-// { firstName: 'Tracie', lastName: 'May', balance: '$1,547.73' },
-// { firstName: 'Kendra', lastName: 'Hines', balance: '$12,383.08' },
-// { firstName: 'Kinney', lastName: 'Howard', balance: '$3,207.06' },
-// { firstName: 'Howard', lastName: 'Gilmore', balance: '$21,307.75' },
-// { firstName: 'Rachelle', lastName: 'Schneider', balance: '$35,121.49' },
-// { firstName: 'Lizzie', lastName: 'Alford', balance: '$4,382.94' } ]
+// console.log(getUsersCreditDetails(usersArray));
+// // expected output:
+// // [ { firstName: 'Kirby', lastName: 'Doyle', balance: '$3,570.06' },
+// // { firstName: 'Tracie', lastName: 'May', balance: '$1,547.73' },
+// // { firstName: 'Kendra', lastName: 'Hines', balance: '$12,383.08' },
+// // { firstName: 'Kinney', lastName: 'Howard', balance: '$3,207.06' },
+// // { firstName: 'Howard', lastName: 'Gilmore', balance: '$21,307.75' },
+// // { firstName: 'Rachelle', lastName: 'Schneider', balance: '$35,121.49' },
+// // { firstName: 'Lizzie', lastName: 'Alford', balance: '$4,382.94' } ]
 
-// ***************************************************************************
-// Iteration 4 - practice `.filter()` method and how to return two elements
-// ***************************************************************************
+// // ***************************************************************************
+// // Iteration 4 - practice `.filter()` method and how to return two elements
+// // ***************************************************************************
 
 const genderView = users => {
   let females = []
@@ -70,14 +70,14 @@ const genderView = users => {
     let { firstName, lastName } = user
     if (user.gender === "female") {
       females.push(`${firstName} ${lastName} `)
-    } else {
+    }
+    else {
       males.push(`${firstName} ${lastName} `)
     }
   })
   return {
     femaleUser: females,
     maleUser: males
-
   }
 };
 
@@ -95,7 +95,6 @@ console.log(genderView(usersArray));
 
 const data = genderView(usersArray);
 
-console.log(data)
 const genderCount = data => {
   let { femaleUser: arr, maleUser: arr1 } = data
   return `Female : ${arr.length}
@@ -112,11 +111,26 @@ console.log(genderCount(data));
 // ***************************************************************************
 // Bonus - Iteration 6
 // ***************************************************************************
-
+let onlyNumbers = []
 const promo20 = users => {
-  // Your code goes here ...
-};
 
+  for (let user of users) {
+    let { balance, firstName } = user
+    let string = ''
+    for (let i = 1; i < balance.length; i++) {
+      if (balance.charAt(i) !== ',') {
+        string += balance.charAt(i)
+      }
+    }
+    if (+(string) > 20000) {
+      onlyNumbers.push(firstName)
+      console.log(`Dear ${firstName}, since your balance is ${balance}, you are eligible to apply for this awesome credit card.`)
+
+    }
+  }
+
+}
+console.log(promo20(usersArray))
 // expected output:
 // Dear Howard, since your balance is $21,307.75, you are eligible to apply for this awesome credit card.
 // Dear Rachelle, since your balance is $35,121.49, you are eligible to apply for this awesome credit card.
@@ -129,7 +143,7 @@ const addActive = users => {
   // Your code goes here ...
 };
 
-addActive(usersArray);
+// addActive(usersArray);
 // expected output:
 // [
 //    { firstName: 'Kirby',
